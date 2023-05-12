@@ -140,6 +140,7 @@ void interpolation(void)
 
 }
 
+
 void animate(void)
 {
 	if (play)
@@ -264,7 +265,7 @@ int main()
 
 	// load models
 	// -----------
-	Model piso("resources/objects/piso/piso.obj");
+	Model pisoZoo("resources/objects/piso/pisoZoo.obj");
 	
 
 	//Inicialización de KeyFrames
@@ -379,9 +380,9 @@ int main()
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::scale(model, glm::vec3(1.5f));
 		staticShader.setMat4("model", model);
-		piso.Draw(staticShader);
+		pisoZoo.Draw(staticShader);
 
 		
 		
