@@ -266,6 +266,7 @@ int main()
 	// load models
 	// -----------
 	Model pisoZoo("resources/objects/piso/pisoZoo.obj");
+	Model paredHabitat("resources/objects/paredes/paredesHabitat.obj");
 	
 
 	//Inicialización de KeyFrames
@@ -378,13 +379,33 @@ int main()
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
 
+		//Colocación de hábitats
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.5f));
 		staticShader.setMat4("model", model);
 		pisoZoo.Draw(staticShader);
 
-		
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-50.0f, -3.0f, 90.0f));
+		model = glm::scale(model, glm::vec3(0.25f));
+		staticShader.setMat4("model", model);
+		paredHabitat.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-50.0f, -3.0f, -90.0f));
+		model = glm::scale(model, glm::vec3(0.25f));
+		staticShader.setMat4("model", model);
+		paredHabitat.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, -3.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.25f));
+		staticShader.setMat4("model", model);
+		paredHabitat.Draw(staticShader);
+
+
+
 		
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
