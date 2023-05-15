@@ -267,6 +267,7 @@ int main()
 	// -----------
 	Model pisoZoo("resources/objects/piso/pisoZoo.obj");
 	Model paredHabitat("resources/objects/paredes/paredesHabitat.obj");
+	Model paredEntrada("resources/objects/paredes/paredEntrada.obj");
 	
 
 	//Inicialización de KeyFrames
@@ -307,8 +308,8 @@ int main()
 		//Setup Advanced Lights
 		staticShader.setVec3("viewPos", camera.Position);
 		staticShader.setVec3("dirLight.direction", lightDirection);
-		staticShader.setVec3("dirLight.ambient", glm::vec3(0.0f, 0.0f, 0.0f));
-		staticShader.setVec3("dirLight.diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
+		staticShader.setVec3("dirLight.ambient", glm::vec3(0.5f, 0.5f, 0.5f));
+		staticShader.setVec3("dirLight.diffuse", glm::vec3(0.5f, 0.5f, 0.5f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
 
 		staticShader.setVec3("pointLight[0].position", lightPosition);
@@ -379,33 +380,41 @@ int main()
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
 
-		//Colocación de hábitats
+		//Colocación de piso
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.5f));
 		staticShader.setMat4("model", model);
 		pisoZoo.Draw(staticShader);
 
+		//Colocación de hábitats
+		//Hábitat más lejano
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-50.0f, -3.0f, 90.0f));
+		model = glm::translate(model, glm::vec3(-80.0f, -3.0f, -90.0f));
+		model = glm::scale(model, glm::vec3(0.25f));
+		staticShader.setMat4("model", model);
+		paredHabitat.Draw(staticShader);
+		//Hábitat medio
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, -3.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.25f));
+		staticShader.setMat4("model", model);
+		paredHabitat.Draw(staticShader);
+		//Hábitat más cercano
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-80.0f, -3.0f, 70.0f));
 		model = glm::scale(model, glm::vec3(0.25f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
 
+		//Paredes entrada 
+		//Más lejana
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-50.0f, -3.0f, -90.0f));
-		model = glm::scale(model, glm::vec3(0.25f));
+		model = glm::translate(model, glm::vec3(30.0f, -3.0f, -70.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.75f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		paredHabitat.Draw(staticShader);
-
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -3.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.25f));
-		staticShader.setMat4("model", model);
-		paredHabitat.Draw(staticShader);
-
-
-
+		paredEntrada.Draw(staticShader);
 		
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
