@@ -410,12 +410,19 @@ int main()
 		//Paredes entrada 
 		//Más lejana
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(30.0f, -3.0f, -70.0f));
+		model = glm::translate(model, glm::vec3(30.0f, -3.0f, -68.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.75f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		
+		//Más cercana
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(30.0f, -3.0f, 52.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 1.05f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		paredEntrada.Draw(staticShader);
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
