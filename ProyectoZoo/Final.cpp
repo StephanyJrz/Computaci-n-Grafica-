@@ -391,19 +391,19 @@ int main()
 		//Hábitat más lejano
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-80.0f, -3.0f, -90.0f));
-		model = glm::scale(model, glm::vec3(0.25f));
+		model = glm::scale(model, glm::vec3(0.30f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
 		//Hábitat medio
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-40.0f, -3.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.25f));
+		model = glm::translate(model, glm::vec3(-50.0f, -3.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.30f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
 		//Hábitat más cercano
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-80.0f, -3.0f, 70.0f));
-		model = glm::scale(model, glm::vec3(0.25f));
+		model = glm::scale(model, glm::vec3(0.30f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
 
@@ -411,7 +411,7 @@ int main()
 		//Más lejana
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(30.0f, -3.0f, -68.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.75f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.45f, 0.75f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
@@ -419,7 +419,7 @@ int main()
 		//Más cercana
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(30.0f, -3.0f, 52.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 1.05f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.45f, 1.05f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
