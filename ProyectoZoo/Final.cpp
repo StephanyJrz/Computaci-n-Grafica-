@@ -269,8 +269,9 @@ int main()
 	Model paredHabitat("resources/objects/paredes/paredesHabitat.obj");
 	Model paredEntrada("resources/objects/paredes/paredEntrada.obj");
 	Model banio("resources/objects/paredes/banio.obj");
-	
-
+	Model rhino("resources/objects/rhino/rhinos.obj");
+	Model arbol("resources/objects/arbol/arbol.obj");
+	Model jirafa("resources/objects/jirafa/jirafa.obj");
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
 	{
@@ -395,12 +396,30 @@ int main()
 		model = glm::scale(model, glm::vec3(0.90f, 0.50f, 0.90f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
+		//Rhino
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-180.0f, 2.0f, -190.0f));
+		model = glm::scale(model, glm::vec3(40.0f));
+		staticShader.setMat4("model", model);
+		rhino.Draw(staticShader);
+		//arbol
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-210.0f, 5.0f, -240.0f));
+		model = glm::scale(model, glm::vec3(50.0f));
+		staticShader.setMat4("model", model);
+		arbol.Draw(staticShader);
 		//Hábitat medio
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-200.0f, -2.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.90f, 0.50f, 0.90f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
+		//jirafa
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-200.0f, 4.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(50.0f));
+		staticShader.setMat4("model", model);
+		jirafa.Draw(staticShader);
 		//Hábitat más cercano
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-200.0f, -2.0f, 190.0f));
