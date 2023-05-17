@@ -270,6 +270,7 @@ int main()
 	Model paredEntrada("resources/objects/paredes/paredEntrada.obj");
 	Model banio("resources/objects/paredes/banio.obj");
 	Model mesa("resources/objects/banca/mesa.obj");
+	Model mostrador("resources/objects/tienda/mostrador.obj");
 	
 
 	Model rhino("resources/objects/rhino/rhinos.obj");
@@ -475,32 +476,41 @@ int main()
 		//Zona de comida
 		// Mesas con bancas
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -150.0f));
+		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -140.0f));
+		
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		mesa.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -140.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -150.0f));
+		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -90.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -100.0f));
+		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -90.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
+		//mostrador 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -100.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::translate(model, glm::vec3(37.0f, 0.0f, -210.0f));
+		
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mesa.Draw(staticShader);
+		mostrador.Draw(staticShader);
+
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
