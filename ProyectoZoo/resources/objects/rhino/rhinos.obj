@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
-# File Created: 16.05.2023 17:39:19
+# File Created: 17.05.2023 10:09:41
 
 mtllib rhinos.mtl
 
@@ -4519,7 +4519,7 @@ vt 0.5880 0.2790 0.0000
 
 o node_id3
 g node_id3
-usemtl pielRino
+usemtl rino
 s off
 f 1/1/1 2/2/1 3/3/1 
 f 2/2/2 4/4/2 3/3/2 
