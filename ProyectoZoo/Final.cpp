@@ -271,6 +271,8 @@ int main()
 	Model banio("resources/objects/paredes/banio.obj");
 	Model mesa("resources/objects/banca/mesa.obj");
 	Model mostrador("resources/objects/tienda/mostrador.obj");
+	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
+	
 	
 
 	Model rhino("resources/objects/rhino/rhinos.obj");
@@ -472,6 +474,15 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		banio.Draw(staticShader);
+		//Tienda de regalos
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(35.0f, -1.5f, 245.0f));
+		model = glm::scale(model, glm::vec3(1.1f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		tienda.Draw(staticShader);
+		
+
 		
 		//Zona de comida
 		// Mesas con bancas
