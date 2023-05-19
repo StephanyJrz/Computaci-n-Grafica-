@@ -271,6 +271,7 @@ int main()
 	Model mesa("resources/objects/banca/mesa.obj");
 	Model mostrador("resources/objects/tienda/mostrador.obj");
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
+	Model paradaVehiculo("resources/objects/paradaVehiculo/paradaVehiculo.obj");
 	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
 	
 
@@ -479,8 +480,8 @@ int main()
 		//Instalaciones---------------------------------------------------------------
 		//Banio
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-70.0f, -1.5f, 100.0f));
-		model = glm::scale(model, glm::vec3(1.2f));
+		model = glm::translate(model, glm::vec3(-40.0f, -1.5f, 250.0f));
+		model = glm::scale(model, glm::vec3(1.4f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		banio.Draw(staticShader);
@@ -491,9 +492,14 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		tienda.Draw(staticShader);
-		
+		//Parada de vehiculo
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, -1.5f, 100.0f));
+		model = glm::scale(model, glm::vec3(1.3f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		paradaVehiculo.Draw(staticShader);
 
-		
 		//Zona de comida
 		// Mesas con bancas
 		model = glm::mat4(1.0f);
