@@ -72,7 +72,6 @@ bool	animacion = false,
 		recorrido3 = false,
 		recorrido4 = false;
 
-
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
 		posY = 0.0f,
@@ -272,7 +271,7 @@ int main()
 	Model mesa("resources/objects/banca/mesa.obj");
 	Model mostrador("resources/objects/tienda/mostrador.obj");
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
-	
+	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
 	
 
 	Model rhino("resources/objects/rhino/rhinos.obj");
@@ -426,13 +425,24 @@ int main()
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		jirafa.Draw(staticShader);
+		//arbol
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-210.0f, 4.0f,-15.0f));
+		model = glm::scale(model, glm::vec3(60.0f));
+		staticShader.setMat4("model", model);
+		arbol.Draw(staticShader);
 		//Hábitat más cercano
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-200.0f, -2.0f, 190.0f));
 		model = glm::scale(model, glm::vec3(0.90f, 0.50f, 0.90f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
-
+		//guacamaya
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-200.0f, 4.0f, 190.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		staticShader.setMat4("model", model);
+		guacamaya.Draw(staticShader);
 		//Paredes entrada----------------------------------------------------------- 
 		//Más lejana
 		model = glm::mat4(1.0f);
