@@ -290,6 +290,8 @@ int main()
 	Model paradaVehiculo("resources/objects/paradaVehiculo/paradaVehiculo.obj");
 	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
 	Model umbrella("resources/objects/umbrella/umbrella.obj");
+	Model menu("resources/objects/menu/menu.obj");
+
 	Model rhino("resources/objects/rhino/rhinos.obj");
 	Model arbol("resources/objects/arbol/arbol.obj");
 	Model jirafa("resources/objects/jirafa/jirafa.obj");
@@ -569,13 +571,20 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mostrador.Draw(staticShader);
-
+		//sombrilla
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-30.0f, -2.0f, -212.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
 		
 		staticShader.setMat4("model", model);
 		umbrella.Draw(staticShader);
+		//menu
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -215.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		menu.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
