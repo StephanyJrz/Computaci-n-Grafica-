@@ -47,7 +47,7 @@ void getResolution(void);
 
 // camera
 Camera camera(glm::vec3(60.0f, 10.0f, 20.0f));
-float MovementSpeed = 0.1f;
+float MovementSpeed = 20.0f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -55,7 +55,7 @@ bool firstMouse = true;
 // timing
 const int FPS = 60;
 const int LOOP_TIME = 1000 / FPS; // = 16 milisec // 1000 millisec == 1 sec
-double	deltaTime = 0.0f,
+double	deltaTime = 20.0f,
 		lastFrame = 0.0f;
 
 //Lighting
@@ -289,7 +289,7 @@ int main()
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
 	Model paradaVehiculo("resources/objects/paradaVehiculo/paradaVehiculo.obj");
 	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
-
+	Model umbrella("resources/objects/umbrella/umbrella.obj");
 	Model rhino("resources/objects/rhino/rhinos.obj");
 	Model arbol("resources/objects/arbol/arbol.obj");
 	Model jirafa("resources/objects/jirafa/jirafa.obj");
@@ -535,30 +535,30 @@ int main()
 		//Zona de comida
 		// Mesas con bancas
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -140.0f));
+		model = glm::translate(model, glm::vec3(55.0f, -1.5f, -150.0f));
 		
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -140.0f));
+		model = glm::translate(model, glm::vec3(0.0f, -1.5f, -150.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -90.0f));
+		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -200.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -90.0f));
+		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -240.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
@@ -569,6 +569,13 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mostrador.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-30.0f, -2.0f, -212.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		
+		staticShader.setMat4("model", model);
+		umbrella.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
