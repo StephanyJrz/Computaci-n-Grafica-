@@ -62,10 +62,11 @@ double	deltaTime = 0.0f,
 glm::vec3 lightPosition(0.0f, 4.0f, -10.0f);
 glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 
-// posiciones
-float	movAuto_x = 0.0f,
-		movAuto_z = 0.0f,
-		orienta = 0.0f;
+//Variables animacion jirafa
+float	mueveCuello = 0.0f;
+bool	cuelloHaciaAbajo = true,
+		cuelloHaciaArriba = false;
+
 bool	animacion = false,
 		recorrido1 = true,
 		recorrido2 = false,
@@ -174,12 +175,24 @@ void animate(void)
 			i_curr_steps++;
 		}
 	}
-
-	//Vehículo
-	if (animacion)
-	{
-		movAuto_z += 3.0f;
+	//Animacion jirafa
+	if (cuelloHaciaAbajo) {
+		mueveCuello += 1.0f;
+		if (mueveCuello >= 70.0f) {
+			cuelloHaciaAbajo = false;
+			cuelloHaciaArriba = true;
+		}
 	}
+
+	if (cuelloHaciaArriba) {
+		mueveCuello -= 1.0f;
+		if (mueveCuello <= 0.0f) {
+			cuelloHaciaAbajo = true;
+			cuelloHaciaArriba = false;
+		}
+	}
+
+	
 }
 
 void getResolution()
@@ -262,6 +275,9 @@ int main()
 	skyboxShader.use();
 	skyboxShader.setInt("skybox", 0);
 
+	//Matrices temporales para animaciones
+	glm::mat4 tempJirafa = glm::mat4(1.0f);
+
 	// load models
 	// -----------
 	Model pisoZoo("resources/objects/piso/pisoZoo.obj");
@@ -273,11 +289,12 @@ int main()
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
 	Model paradaVehiculo("resources/objects/paradaVehiculo/paradaVehiculo.obj");
 	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
-	
 
 	Model rhino("resources/objects/rhino/rhinos.obj");
 	Model arbol("resources/objects/arbol/arbol.obj");
 	Model jirafa("resources/objects/jirafa/jirafa.obj");
+	Model cuerpoAnim("resources/objects/jirafa/cuerpoAnim.obj");//Cuerpo de la jirafa animada
+	Model cuelloAnim("resources/objects/jirafa/cuelloAnim.obj");//Cuello de la jirafa animada
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
 	{
@@ -396,7 +413,7 @@ int main()
 		pisoZoo.Draw(staticShader);
 
 		//Colocación de hábitats---------------------------------------------------
-		//Hábitat más lejano
+		//Hábitat más lejano-------------------------------------------------------
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-200.0f, -2.0f, -190.0f));
 		model = glm::scale(model, glm::vec3(0.90f, 0.50f, 0.90f));
@@ -414,24 +431,39 @@ int main()
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
-		//Hábitat medio
+		//--------------------------------------------------------------------------
+		//Hábitat medio-------------------------------------------------------------
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-200.0f, -2.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.90f, 0.50f, 0.90f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
-		//jirafa
+		//jirafa estatica
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-200.0f, 4.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-200.0f, 4.0f, 20.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		jirafa.Draw(staticShader);
+		//jirafa animada cuerpo
+		model = glm::mat4(1.0f);
+		tempJirafa = model = glm::translate(model, glm::vec3(-200.0f, 4.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(50.0f));
+		staticShader.setMat4("model", model);
+		cuerpoAnim.Draw(staticShader);
+		//jirafa animada cuello
+		model = glm::translate(tempJirafa, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(mueveCuello),glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(50.0f));
+		staticShader.setMat4("model", model);
+		cuelloAnim.Draw(staticShader);
 		//arbol
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-210.0f, 4.0f,-15.0f));
+		model = glm::translate(model, glm::vec3(-215.0f, 4.0f,-20.0f));
 		model = glm::scale(model, glm::vec3(60.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
+		//------------------------------------------------------------------------
 		//Hábitat más cercano
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-200.0f, -2.0f, 190.0f));
