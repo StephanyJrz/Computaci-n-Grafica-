@@ -47,7 +47,7 @@ void getResolution(void);
 
 // camera
 Camera camera(glm::vec3(60.0f, 10.0f, 20.0f));
-float MovementSpeed = 0.1f;
+float MovementSpeed = 20.0f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -55,7 +55,7 @@ bool firstMouse = true;
 // timing
 const int FPS = 60;
 const int LOOP_TIME = 1000 / FPS; // = 16 milisec // 1000 millisec == 1 sec
-double	deltaTime = 0.0f,
+double	deltaTime = 20.0f,
 		lastFrame = 0.0f;
 
 //Lighting
@@ -175,10 +175,10 @@ void animate(void)
 			i_curr_steps++;
 		}
 	}
-	//Animacion jirafa-------------
+	//Animacion jirafa
 	if (cuelloHaciaAbajo) {
 		mueveCuello += 1.0f;
-		if (mueveCuello >= 35.0f) {
+		if (mueveCuello >= 70.0f) {
 			cuelloHaciaAbajo = false;
 			cuelloHaciaArriba = true;
 		}
@@ -191,7 +191,7 @@ void animate(void)
 			cuelloHaciaArriba = false;
 		}
 	}
-	//---------------------------------
+
 	
 }
 
@@ -284,8 +284,6 @@ int main()
 	Model paredHabitat("resources/objects/paredes/paredesHabitat.obj");
 	Model paredEntrada("resources/objects/paredes/paredEntrada.obj");
 	Model banio("resources/objects/paredes/banio.obj");
-	Model toilet("resources/objects/paredes/toilet.obj");
-	Model lavabo("resources/objects/paredes/lavaboBanio.obj");
 	Model mesa("resources/objects/banca/mesa.obj");
 	Model mostrador("resources/objects/tienda/mostrador.obj");
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
@@ -299,6 +297,15 @@ int main()
 	Model jirafa("resources/objects/jirafa/jirafa.obj");
 	Model cuerpoAnim("resources/objects/jirafa/cuerpoAnim.obj");//Cuerpo de la jirafa animada
 	Model cuelloAnim("resources/objects/jirafa/cuelloAnim.obj");//Cuello de la jirafa animada
+
+
+	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
+	cocinera.initShaders(animShader.ID);
+
+	ModelAnim cajero("resources/objects/cajero/ArmStretching.dae");
+	cajero.initShaders(animShader.ID);
+
+
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
 	{
@@ -400,7 +407,17 @@ int main()
 		animShader.setVec3("light.direction", lightDirection);
 		animShader.setVec3("viewPos", camera.Position);
 
-		
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-17.0f, -1.7f, -230.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.15f));	// it's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		cocinera.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(37.0f, 0.5f, -260.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.17f));	// it's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		cajero.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
@@ -455,9 +472,9 @@ int main()
 		staticShader.setMat4("model", model);
 		cuerpoAnim.Draw(staticShader);
 		//jirafa animada cuello
-		model = glm::translate(tempJirafa, glm::vec3(5.5f, 0.0f, 0.0f));
+		model = glm::translate(tempJirafa, glm::vec3(0.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(mueveCuello),glm::vec3(0.0f, 0.0f, 1.0f));
-		model = glm::translate(model, glm::vec3(-2.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		cuelloAnim.Draw(staticShader);
@@ -521,20 +538,6 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		banio.Draw(staticShader);
-		//Toilet
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-55.0f, -1.5f, 262.0f));
-		model = glm::scale(model, glm::vec3(2.6f));
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		toilet.Draw(staticShader);
-		//Lavabo
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-50.0f, -7.2f, 240.0f));
-		model = glm::scale(model, glm::vec3(18.0f));
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		lavabo.Draw(staticShader);
 		//Tienda de regalos
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(35.0f, -1.5f, 245.0f));
@@ -553,56 +556,54 @@ int main()
 		//Zona de comida
 		// Mesas con bancas
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -140.0f));
-		
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(45.0f, -1.5f, -170.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -140.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(5.0f, -1.5f, -170.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -90.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -200.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -90.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -240.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		//mostrador 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(37.0f, 0.0f, -210.0f));
-		
+		model = glm::translate(model, glm::vec3(37.0f, 0.0f, -230.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mostrador.Draw(staticShader);
-
 		//sombrilla
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-30.0f, -2.0f, -212.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
-
+		
 		staticShader.setMat4("model", model);
 		umbrella.Draw(staticShader);
 		//menu
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -215.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -225.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		menu.Draw(staticShader);
-
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
