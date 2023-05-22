@@ -67,18 +67,13 @@ float	mueveCuello = 0.0f;
 bool	cuelloHaciaAbajo = true,
 		cuelloHaciaArriba = false;
 
-bool	animacion = false,
-		recorrido1 = true,
-		recorrido2 = false,
-		recorrido3 = false,
-		recorrido4 = false;
-
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
 		posY = 0.0f,
 		posZ = 0.0f,
 		rotRodIzq = 0.0f,
 		giroMonito = 0.0f;
+
 float	incX = 0.0f,
 		incY = 0.0f,
 		incZ = 0.0f,
@@ -275,9 +270,6 @@ int main()
 	skyboxShader.use();
 	skyboxShader.setInt("skybox", 0);
 
-	//Matrices temporales para animaciones
-	glm::mat4 tempJirafa = glm::mat4(1.0f);
-
 	// load models
 	// -----------
 	Model pisoZoo("resources/objects/piso/pisoZoo.obj");
@@ -291,14 +283,21 @@ int main()
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
 	Model paradaVehiculo("resources/objects/paradaVehiculo/paradaVehiculo.obj");
 	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
+	Model cuerpoGua("resources/objects/guacamaya/cuerpoGua.obj");
+	Model cabezaGua("resources/objects/guacamaya/cabezaGua.obj");
+	Model alasGua("resources/objects/guacamaya/alasGua.obj");
 	Model umbrella("resources/objects/umbrella/umbrella.obj");
 	Model menu("resources/objects/menu/menu.obj");
+	Model jeep("resources/objects/safariJeep/safariJeep.obj");
+	Model publiEntrada("resources/objects/publicidad/publiEntrada.obj");
+	Model publiParking("resources/objects/publicidad/publiParking.obj");
 
 	Model rhino("resources/objects/rhino/rhinos.obj");
 	Model arbol("resources/objects/arbol/arbol.obj");
 	Model jirafa("resources/objects/jirafa/jirafa.obj");
 	Model cuerpoAnim("resources/objects/jirafa/cuerpoAnim.obj");//Cuerpo de la jirafa animada
 	Model cuelloAnim("resources/objects/jirafa/cuelloAnim.obj");//Cuello de la jirafa animada
+	
 	
 	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
 	cocinera.initShaders(animShader.ID);
@@ -379,7 +378,12 @@ int main()
 		staticShader.setFloat("material_shininess", 32.0f);
 
 		glm::mat4 model = glm::mat4(1.0f);
-		glm::mat4 tmp = glm::mat4(1.0f);
+		//Matrices temporales para animaciones
+		//Jirafa
+		glm::mat4 tempJirafa = glm::mat4(1.0f);
+		//Guacamaya
+		glm::mat4 tempGuacamaya = glm::mat4(1.0f);
+		
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 10000.0f);
 		glm::mat4 view = camera.GetViewMatrix();
@@ -492,12 +496,37 @@ int main()
 		model = glm::scale(model, glm::vec3(0.90f, 0.50f, 0.90f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
-		//guacamaya
+		//guacamayas estaticas
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-200.0f, 4.0f, 190.0f));
 		model = glm::scale(model, glm::vec3(20.0f));
 		staticShader.setMat4("model", model);
 		guacamaya.Draw(staticShader);
+		//arbol
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-220.0f, 4.0f, 200.0f));
+		model = glm::scale(model, glm::vec3(60.0f));
+		staticShader.setMat4("model", model);
+		arbol.Draw(staticShader);
+		//guacamaya animada
+		//Cuerpo
+		model = glm::mat4(1.0f);
+		tempGuacamaya = model = glm::translate(model, glm::vec3(-210.0f, 31.0f, 222.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		staticShader.setMat4("model", model);
+		cuerpoGua.Draw(staticShader);
+		//Cabeza
+		model = glm::translate(tempGuacamaya, glm::vec3(0.0f, 0.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(mueveCuello), glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::translate(model, glm::vec3(5.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		staticShader.setMat4("model", model);
+		cabezaGua.Draw(staticShader);
+		//Alas
+		model = glm::translate(tempGuacamaya, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		staticShader.setMat4("model", model);
+		alasGua.Draw(staticShader);
 		//Paredes entrada----------------------------------------------------------- 
 		//Más lejana
 		model = glm::mat4(1.0f);
@@ -506,7 +535,13 @@ int main()
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
-		
+		//Publicidad entrada
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(95.0f, -3.0f, -180.0f));
+		model = glm::scale(model, glm::vec3(1.5f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		publiEntrada.Draw(staticShader);
 		//Más cercana
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(80.0f, -3.0f, 140.0f));
@@ -514,7 +549,13 @@ int main()
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
-
+		//Publicidad estacionamiento
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(95.0f, -3.0f, 150.0f));
+		model = glm::scale(model, glm::vec3(1.5f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		publiParking.Draw(staticShader);
 		//Más cercana, tienda de regalos
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(5.0f, -3.0f, 280.0f));
@@ -567,6 +608,13 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paradaVehiculo.Draw(staticShader);
+		//Jeep
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, -1.5f, 70.0f));
+		model = glm::scale(model, glm::vec3(14.0f));
+		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		jeep.Draw(staticShader);
 
 		//Zona de comida
 		// Mesas con bancas
@@ -688,9 +736,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		lightPosition.x--;
 
-	//Car animation
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-		animacion ^= true;
+	
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
