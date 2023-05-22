@@ -571,37 +571,37 @@ int main()
 		//Zona de comida
 		// Mesas con bancas
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -140.0f));
-		
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(45.0f, -1.5f, -170.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -140.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(5.0f, -1.5f, -170.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(10.0f, -1.5f, -90.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -200.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(60.0f, -1.5f, -90.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -240.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mesa.Draw(staticShader);
 
 		//mostrador 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(37.0f, 0.0f, -210.0f));
-		
+		model = glm::translate(model, glm::vec3(37.0f, 0.0f, -230.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		mostrador.Draw(staticShader);
@@ -615,8 +615,8 @@ int main()
 		umbrella.Draw(staticShader);
 		//menu
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -215.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -225.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		menu.Draw(staticShader);
