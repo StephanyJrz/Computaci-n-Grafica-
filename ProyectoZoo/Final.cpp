@@ -68,34 +68,28 @@ bool	cuelloHaciaAbajo = true,
 		cuelloHaciaArriba = false;
 
 //Keyframes (Manipulación y dibujo)
-float	posX = 0.0f,
-		posY = 0.0f,
-		posZ = 0.0f,
-		rotRodIzq = 0.0f,
-		giroMonito = 0.0f;
+float	movimientoX = 0.0f,
+		movimientoZ = 0.0f,
+		orientacion = 0.0f;
 
-float	incX = 0.0f,
-		incY = 0.0f,
-		incZ = 0.0f,
-		rotInc = 0.0f,
-		giroMonitoInc = 0.0f;
+float	incrementoX = 0.0f,
+		incrementoZ = 0.0f,
+		incOrientacion = 0.0f;
 
-#define MAX_FRAMES 9
+#define MAX_FRAMES 14
 int i_max_steps = 60;
 int i_curr_steps = 0;
 typedef struct _frame
 {
 	//Variables para GUARDAR Key Frames
-	float posX;		//Variable para PosicionX
-	float posY;		//Variable para PosicionY
-	float posZ;		//Variable para PosicionZ
-	float rotRodIzq;
-	float giroMonito;
+	float movimientoX;	//posX
+	float movimientoZ;	//posZ
+	float orientacion;  //giroMonito
 
 }FRAME;
 
 FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;			//introducir número en caso de tener Key guardados
+int FrameIndex = 14;			//introducir número en caso de tener Key guardados
 bool play = false;
 int playIndex = 0;
 
@@ -104,35 +98,25 @@ void saveFrame(void)
 	//printf("frameindex %d\n", FrameIndex);
 	std::cout << "Frame Index = " << FrameIndex << std::endl;
 
-	KeyFrame[FrameIndex].posX = posX;
-	KeyFrame[FrameIndex].posY = posY;
-	KeyFrame[FrameIndex].posZ = posZ;
-
-	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
-	KeyFrame[FrameIndex].giroMonito = giroMonito;
+	KeyFrame[FrameIndex].movimientoX = movimientoX;
+	KeyFrame[FrameIndex].movimientoZ = movimientoZ;
+	KeyFrame[FrameIndex].orientacion = orientacion;
 
 	FrameIndex++;
 }
 
 void resetElements(void)
 {
-	posX = KeyFrame[0].posX;
-	posY = KeyFrame[0].posY;
-	posZ = KeyFrame[0].posZ;
-
-	rotRodIzq = KeyFrame[0].rotRodIzq;
-	giroMonito = KeyFrame[0].giroMonito;
+	movimientoX = KeyFrame[0].movimientoX;
+	movimientoZ = KeyFrame[0].movimientoZ;
+	orientacion = KeyFrame[0].orientacion;
 }
 
 void interpolation(void)
 {
-	incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
-	incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
-	incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
-
-	rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
-	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps;
-
+	incrementoX = (KeyFrame[playIndex + 1].movimientoX - KeyFrame[playIndex].movimientoX) / i_max_steps;
+	incrementoZ = (KeyFrame[playIndex + 1].movimientoZ - KeyFrame[playIndex].movimientoZ) / i_max_steps;
+	incOrientacion = (KeyFrame[playIndex + 1].orientacion - KeyFrame[playIndex].orientacion) / i_max_steps;
 }
 
 
@@ -160,16 +144,14 @@ void animate(void)
 		else
 		{
 			//Draw animation
-			posX += incX;
-			posY += incY;
-			posZ += incZ;
-
-			rotRodIzq += rotInc;
-			giroMonito += giroMonitoInc;
+			movimientoX += incrementoX;
+			movimientoZ += incrementoZ;
+			orientacion += incOrientacion;
 
 			i_curr_steps++;
 		}
 	}
+
 	//Animacion jirafa-------------
 	if (cuelloHaciaAbajo) {
 		mueveCuello += 1.0f;
@@ -304,17 +286,54 @@ int main()
 
 	ModelAnim cajero("resources/objects/cajero/ArmStretching.dae");
 	cajero.initShaders(animShader.ID);
-																
+	
+														
 																
 	//Inicialización de KeyFrames
-	for (int i = 0; i < MAX_FRAMES; i++)
-	{
-		KeyFrame[i].posX = 0;
-		KeyFrame[i].posY = 0;
-		KeyFrame[i].posZ = 0;
-		KeyFrame[i].rotRodIzq = 0;
-		KeyFrame[i].giroMonito = 0;
-	}
+	
+	KeyFrame[0].movimientoX = 0.0f;
+	KeyFrame[0].movimientoZ = 0.0f;
+	KeyFrame[0].orientacion = 0.0f;
+
+	KeyFrame[1].movimientoX = -100.0f;
+	KeyFrame[1].movimientoZ = 0.0f;
+	KeyFrame[1].orientacion = 0.0f;
+
+	KeyFrame[2].movimientoX = -100.0f;
+	KeyFrame[2].movimientoZ = 200.0f;
+	KeyFrame[2].orientacion = 90.0f;
+
+	KeyFrame[3].movimientoX = -250.0f;
+	KeyFrame[3].movimientoZ = 200.0f;
+	KeyFrame[3].orientacion = 0.0f;
+
+	KeyFrame[4].movimientoX = -250.0f;
+	KeyFrame[4].movimientoZ = 50.0f;
+	KeyFrame[4].orientacion = 0.0f;
+
+	KeyFrame[5].movimientoX = -100.0f;
+	KeyFrame[5].movimientoZ = 50.0f;
+	KeyFrame[5].orientacion = 0.0f;
+
+	KeyFrame[6].movimientoX = -100.0f;
+	KeyFrame[6].movimientoZ = -150.0f;
+	KeyFrame[6].orientacion = 0.0f;
+
+	KeyFrame[7].movimientoX = -250.0f;
+	KeyFrame[7].movimientoZ = -150.0f;
+	KeyFrame[7].orientacion = 0.0f;
+
+	KeyFrame[8].movimientoX = -250.0f;
+	KeyFrame[8].movimientoZ = -350.0f;
+	KeyFrame[8].orientacion = 0.0f;
+
+	KeyFrame[9].movimientoX = -100.0f;
+	KeyFrame[9].movimientoZ = -350.0f;
+	KeyFrame[9].orientacion = 0.0f;
+
+	KeyFrame[10].movimientoX = -100.0f;
+	KeyFrame[10].movimientoZ = 0.0f;
+	KeyFrame[10].orientacion = 0.0f;
 
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -610,9 +629,9 @@ int main()
 		paradaVehiculo.Draw(staticShader);
 		//Jeep
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -1.5f, 70.0f));
+		model = glm::translate(model, glm::vec3(movimientoX, -1.5f, 70.0f + movimientoZ));
 		model = glm::scale(model, glm::vec3(14.0f));
-		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(270.0f + orientacion), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		jeep.Draw(staticShader);
 
@@ -658,9 +677,9 @@ int main()
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-30.0f, -2.0f, -212.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
-
 		staticShader.setMat4("model", model);
 		umbrella.Draw(staticShader);
+
 		//menu
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -225.0f));
@@ -715,22 +734,18 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 	//To Configure Model
-	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		posZ++;
-	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-		posZ--;
+	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+		movimientoX--;
+	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+		movimientoX++;
+	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+		movimientoZ++;
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-		posX--;
-	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		posX++;
-	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-		rotRodIzq--;
-	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
-		rotRodIzq++;
-	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
-		giroMonito--;
-	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
-		giroMonito++;
+		movimientoZ--;
+	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+		orientacion++;
+	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+		orientacion--;
 	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
 		lightPosition.x++;
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
@@ -760,7 +775,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	}
 
 	//To Save a KeyFrame
-	if (key == GLFW_KEY_L && action == GLFW_PRESS)
+	if (key == GLFW_KEY_K && action == GLFW_PRESS)
 	{
 		if (FrameIndex < MAX_FRAMES)
 		{
