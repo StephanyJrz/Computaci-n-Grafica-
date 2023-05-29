@@ -260,16 +260,16 @@ int main()
 	Model banio("resources/objects/paredes/banio.obj");
 	Model toilet("resources/objects/paredes/toilet.obj");
 	Model lavabo("resources/objects/paredes/lavaboBanio.obj");
-	Model mesa("resources/objects/banca/mesa.obj");
-	Model mostrador("resources/objects/tienda/mostrador.obj");
+	//Model mesa("resources/objects/banca/mesa.obj");
+	//Model mostrador("resources/objects/tienda/mostrador.obj");
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
 	Model paradaVehiculo("resources/objects/paradaVehiculo/paradaVehiculo.obj");
 	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
 	Model cuerpoGua("resources/objects/guacamaya/cuerpoGua.obj");
 	Model cabezaGua("resources/objects/guacamaya/cabezaGua.obj");
 	Model alasGua("resources/objects/guacamaya/alasGua.obj");
-	Model umbrella("resources/objects/umbrella/umbrella.obj");
-	Model menu("resources/objects/menu/menu.obj");
+	//Model umbrella("resources/objects/umbrella/umbrella.obj");
+	//Model menu("resources/objects/menu/menu.obj");
 	Model jeep("resources/objects/safariJeep/safariJeep.obj");
 	Model publiEntrada("resources/objects/publicidad/publiEntrada.obj");
 	Model publiParking("resources/objects/publicidad/publiParking.obj");
@@ -280,13 +280,13 @@ int main()
 	Model cuerpoAnim("resources/objects/jirafa/cuerpoAnim.obj");//Cuerpo de la jirafa animada
 	Model cuelloAnim("resources/objects/jirafa/cuelloAnim.obj");//Cuello de la jirafa animada
 	
-	
+	/*
 	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
 	cocinera.initShaders(animShader.ID);
 
 	ModelAnim cajero("resources/objects/cajero/ArmStretching.dae");
 	cajero.initShaders(animShader.ID);
-	
+	*/
 														
 																
 	//Inicialización de KeyFrames
@@ -303,37 +303,37 @@ int main()
 	KeyFrame[2].movimientoZ = 200.0f;
 	KeyFrame[2].orientacion = 90.0f;
 
-	KeyFrame[3].movimientoX = -250.0f;
+	KeyFrame[3].movimientoX = -270.0f;
 	KeyFrame[3].movimientoZ = 200.0f;
 	KeyFrame[3].orientacion = 0.0f;
 
-	KeyFrame[4].movimientoX = -250.0f;
+	KeyFrame[4].movimientoX = -270.0f;
 	KeyFrame[4].movimientoZ = 50.0f;
-	KeyFrame[4].orientacion = 0.0f;
+	KeyFrame[4].orientacion = -90.0f;
 
 	KeyFrame[5].movimientoX = -100.0f;
 	KeyFrame[5].movimientoZ = 50.0f;
-	KeyFrame[5].orientacion = 0.0f;
+	KeyFrame[5].orientacion = -180.0f;
 
 	KeyFrame[6].movimientoX = -100.0f;
 	KeyFrame[6].movimientoZ = -150.0f;
-	KeyFrame[6].orientacion = 0.0f;
+	KeyFrame[6].orientacion = -90.0f;
 
-	KeyFrame[7].movimientoX = -250.0f;
+	KeyFrame[7].movimientoX = -270.0f;
 	KeyFrame[7].movimientoZ = -150.0f;
 	KeyFrame[7].orientacion = 0.0f;
 
-	KeyFrame[8].movimientoX = -250.0f;
-	KeyFrame[8].movimientoZ = -350.0f;
-	KeyFrame[8].orientacion = 0.0f;
+	KeyFrame[8].movimientoX = -270.0f;
+	KeyFrame[8].movimientoZ = -335.0f;
+	KeyFrame[8].orientacion = -90.0f;
 
 	KeyFrame[9].movimientoX = -100.0f;
 	KeyFrame[9].movimientoZ = -350.0f;
-	KeyFrame[9].orientacion = 0.0f;
+	KeyFrame[9].orientacion = -180.0f;
 
 	KeyFrame[10].movimientoX = -100.0f;
 	KeyFrame[10].movimientoZ = 0.0f;
-	KeyFrame[10].orientacion = 0.0f;
+	KeyFrame[10].orientacion = 90.0f;
 
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -435,13 +435,13 @@ int main()
 		model = glm::scale(model, glm::vec3(0.15f));	// it's a bit too big for our scene, so scale it down
 		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
-		cocinera.Draw(animShader);
+		//cocinera.Draw(animShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(37.0f, 0.5f, -260.0f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.17f));	// it's a bit too big for our scene, so scale it down
 		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
-		cajero.Draw(animShader);
+		//cajero.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
@@ -642,28 +642,28 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mesa.Draw(staticShader);
+		//mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(5.0f, -1.5f, -170.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mesa.Draw(staticShader);
+		//mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -200.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mesa.Draw(staticShader);
+		//mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -240.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mesa.Draw(staticShader);
+		//mesa.Draw(staticShader);
 
 		//mostrador 
 		model = glm::mat4(1.0f);
@@ -671,14 +671,14 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mostrador.Draw(staticShader);
+		//mostrador.Draw(staticShader);
 
 		//sombrilla
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-30.0f, -2.0f, -212.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
 		staticShader.setMat4("model", model);
-		umbrella.Draw(staticShader);
+		//umbrella.Draw(staticShader);
 
 		//menu
 		model = glm::mat4(1.0f);
@@ -686,7 +686,7 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		menu.Draw(staticShader);
+		//menu.Draw(staticShader);
 
 
 		// -------------------------------------------------------------------------------------------------------------------------
