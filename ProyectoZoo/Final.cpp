@@ -273,7 +273,8 @@ int main()
 	Model jeep("resources/objects/safariJeep/safariJeep.obj");
 	Model publiEntrada("resources/objects/publicidad/publiEntrada.obj");
 	Model publiParking("resources/objects/publicidad/publiParking.obj");
-
+	Model roca("resources/objects/paredes/roca.obj");
+	
 	Model rhino("resources/objects/rhino/rhinos.obj");
 	Model arbol("resources/objects/arbol/arbol.obj");
 	Model jirafa("resources/objects/jirafa/jirafa.obj");
@@ -295,43 +296,43 @@ int main()
 	KeyFrame[0].movimientoZ = 0.0f;
 	KeyFrame[0].orientacion = 0.0f;
 
-	KeyFrame[1].movimientoX = -100.0f;
+	KeyFrame[1].movimientoX = -150.0f;
 	KeyFrame[1].movimientoZ = 0.0f;
 	KeyFrame[1].orientacion = 0.0f;
 
-	KeyFrame[2].movimientoX = -100.0f;
-	KeyFrame[2].movimientoZ = 200.0f;
+	KeyFrame[2].movimientoX = -150.0f;
+	KeyFrame[2].movimientoZ = 270.0f;
 	KeyFrame[2].orientacion = 90.0f;
 
-	KeyFrame[3].movimientoX = -270.0f;
-	KeyFrame[3].movimientoZ = 200.0f;
+	KeyFrame[3].movimientoX = -370.0f;
+	KeyFrame[3].movimientoZ = 270.0f;
 	KeyFrame[3].orientacion = 0.0f;
 
-	KeyFrame[4].movimientoX = -270.0f;
-	KeyFrame[4].movimientoZ = 50.0f;
+	KeyFrame[4].movimientoX = -370.0f;
+	KeyFrame[4].movimientoZ = 0.0f;
 	KeyFrame[4].orientacion = -90.0f;
 
-	KeyFrame[5].movimientoX = -100.0f;
-	KeyFrame[5].movimientoZ = 50.0f;
+	KeyFrame[5].movimientoX = -150.0f;
+	KeyFrame[5].movimientoZ =  0.0f;
 	KeyFrame[5].orientacion = -180.0f;
 
-	KeyFrame[6].movimientoX = -100.0f;
-	KeyFrame[6].movimientoZ = -150.0f;
+	KeyFrame[6].movimientoX = -150.0f;
+	KeyFrame[6].movimientoZ = -220.0f;
 	KeyFrame[6].orientacion = -90.0f;
 
-	KeyFrame[7].movimientoX = -270.0f;
-	KeyFrame[7].movimientoZ = -150.0f;
+	KeyFrame[7].movimientoX = -370.0f;
+	KeyFrame[7].movimientoZ = -220.0f;
 	KeyFrame[7].orientacion = 0.0f;
 
-	KeyFrame[8].movimientoX = -270.0f;
-	KeyFrame[8].movimientoZ = -335.0f;
+	KeyFrame[8].movimientoX = -370.0f;
+	KeyFrame[8].movimientoZ = -485.0f;
 	KeyFrame[8].orientacion = -90.0f;
 
-	KeyFrame[9].movimientoX = -100.0f;
-	KeyFrame[9].movimientoZ = -350.0f;
+	KeyFrame[9].movimientoX = -150.0f;
+	KeyFrame[9].movimientoZ = -485.0f;
 	KeyFrame[9].orientacion = -180.0f;
 
-	KeyFrame[10].movimientoX = -100.0f;
+	KeyFrame[10].movimientoX = -150.0f;
 	KeyFrame[10].movimientoZ = 0.0f;
 	KeyFrame[10].orientacion = 90.0f;
 
@@ -517,20 +518,32 @@ int main()
 		paredHabitat.Draw(staticShader);
 		//guacamayas estaticas
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-260.0f, 4.0f, 300.0f));
+		model = glm::translate(model, glm::vec3(-310.0f, 4.0f, 320.0f));
 		model = glm::scale(model, glm::vec3(20.0f));
 		staticShader.setMat4("model", model);
 		guacamaya.Draw(staticShader);
 		//arbol
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-280.0f, 4.0f, 280.0f));
+		model = glm::translate(model, glm::vec3(-310.0f, 4.0f, 280.0f));
 		model = glm::scale(model, glm::vec3(60.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
-		//guacamaya animada
-		//Cuerpo
+		//Roca uno para leon
 		model = glm::mat4(1.0f);
-		tempGuacamaya = model = glm::translate(model, glm::vec3(-270.0f, 31.0f, 292.0f));
+		model = glm::translate(model, glm::vec3(-250.0f, 4.0f, 320.0f));
+		model = glm::scale(model, glm::vec3(2.0f));
+		staticShader.setMat4("model", model);
+		roca.Draw(staticShader);
+		//Roca dos para leon
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-250.0f, 4.0f, 250.0f));
+		model = glm::scale(model, glm::vec3(2.0f));
+		staticShader.setMat4("model", model);
+		roca.Draw(staticShader);
+		//guacamaya animada
+		/*Cuerpo
+		model = glm::mat4(1.0f);
+		tempGuacamaya = model = glm::translate(model, glm::vec3(-280.0f, 31.0f, 280.0f));
 		model = glm::scale(model, glm::vec3(20.0f));
 		staticShader.setMat4("model", model);
 		cuerpoGua.Draw(staticShader);
@@ -545,7 +558,7 @@ int main()
 		model = glm::translate(tempGuacamaya, glm::vec3(0.0f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(20.0f));
 		staticShader.setMat4("model", model);
-		alasGua.Draw(staticShader);
+		alasGua.Draw(staticShader);*/
 		//Paredes entrada----------------------------------------------------------- 
 		//Más lejana uno
 		model = glm::mat4(1.0f);
@@ -640,7 +653,7 @@ int main()
 		paredEntrada.Draw(staticShader);
 		//Tres
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-431.0f, -3.0f, -259.0f));
+		model = glm::translate(model, glm::vec3(-431.0f, -3.0f, -258.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 3.0f)); //ancho, alto, largo
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
