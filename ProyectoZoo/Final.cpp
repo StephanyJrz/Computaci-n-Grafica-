@@ -453,7 +453,7 @@ int main()
 		//Colocación de piso
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
-		model = glm::scale(model, glm::vec3(4.0f));
+		model = glm::scale(model, glm::vec3(6.0f));
 		staticShader.setMat4("model", model);
 		pisoZoo.Draw(staticShader);
 
@@ -564,7 +564,7 @@ int main()
 		//Más cercana
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(80.0f, -3.0f, 140.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 0.9f, 2.85f));
+		model = glm::scale(model, glm::vec3(2.0f, 0.9f, 2.85f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
