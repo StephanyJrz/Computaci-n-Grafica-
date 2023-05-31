@@ -273,7 +273,7 @@ int main()
 	Model jeep("resources/objects/safariJeep/safariJeep.obj");
 	Model publiEntrada("resources/objects/publicidad/publiEntrada.obj");
 	Model publiParking("resources/objects/publicidad/publiParking.obj");
-
+	Model roca("resources/objects/paredes/roca.obj");
 	Model rhino("resources/objects/rhino/rhinos.obj");
 	Model arbol("resources/objects/arbol/arbol.obj");
 	Model jirafa("resources/objects/jirafa/jirafa.obj");
@@ -517,20 +517,32 @@ int main()
 		paredHabitat.Draw(staticShader);
 		//guacamayas estaticas
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-260.0f, 4.0f, 300.0f));
+		model = glm::translate(model, glm::vec3(-310.0f, 4.0f, 320.0f));
 		model = glm::scale(model, glm::vec3(20.0f));
 		staticShader.setMat4("model", model);
 		guacamaya.Draw(staticShader);
 		//arbol
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-280.0f, 4.0f, 280.0f));
+		model = glm::translate(model, glm::vec3(-310.0f, 4.0f, 280.0f));
 		model = glm::scale(model, glm::vec3(60.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
-		//guacamaya animada
-		//Cuerpo
+		//Roca uno para leon
 		model = glm::mat4(1.0f);
-		tempGuacamaya = model = glm::translate(model, glm::vec3(-270.0f, 31.0f, 292.0f));
+		model = glm::translate(model, glm::vec3(-250.0f, 4.0f, 320.0f));
+		model = glm::scale(model, glm::vec3(2.0f));
+		staticShader.setMat4("model", model);
+		roca.Draw(staticShader);
+		//Roca dos para leon
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-250.0f, 4.0f, 250.0f));
+		model = glm::scale(model, glm::vec3(2.0f));
+		staticShader.setMat4("model", model);
+		roca.Draw(staticShader);
+		//guacamaya animada
+		/*Cuerpo
+		model = glm::mat4(1.0f);
+		tempGuacamaya = model = glm::translate(model, glm::vec3(-280.0f, 31.0f, 280.0f));
 		model = glm::scale(model, glm::vec3(20.0f));
 		staticShader.setMat4("model", model);
 		cuerpoGua.Draw(staticShader);
@@ -541,6 +553,13 @@ int main()
 		model = glm::scale(model, glm::vec3(20.0f));
 		staticShader.setMat4("model", model);
 		cabezaGua.Draw(staticShader);
+		//Alas
+		model = glm::translate(tempGuacamaya, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		staticShader.setMat4("model", model);
+		alasGua.Draw(staticShader);*/
+		//Paredes entrada----------------------------------------------------------- 
+		//Más lejana uno
 		//Alas
 		model = glm::translate(tempGuacamaya, glm::vec3(0.0f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(20.0f));
