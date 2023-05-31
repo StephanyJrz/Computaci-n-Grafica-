@@ -66,7 +66,21 @@ glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 float	mueveCuello = 0.0f;
 bool	cuelloHaciaAbajo = true,
 		cuelloHaciaArriba = false;
+//leon animacion
+float	movleon_x = -260.0f,
+movleon_z = 320.0f,
+movleon_y = 15.0f,
+ori = 0.0f;
+bool	animacion = false,
+recorrido1 = true,
+recorrido2 = false,
+recorrido3 = false,
+recorrido4 = false;
 
+float myVariable = 0.0f;
+bool vuelo = false;
+bool avanza = false;
+bool baja = false;
 //Keyframes (Manipulación y dibujo)
 float	movimientoX = 0.0f,
 		movimientoZ = 0.0f,
@@ -155,7 +169,7 @@ void animate(void)
 	//Animacion jirafa-------------
 	if (cuelloHaciaAbajo) {
 		mueveCuello += 1.0f;
-		if (mueveCuello >= 35.0f) {
+		if (mueveCuello >= 20.0f) {
 			cuelloHaciaAbajo = false;
 			cuelloHaciaArriba = true;
 		}
@@ -168,10 +182,29 @@ void animate(void)
 			cuelloHaciaArriba = false;
 		}
 	}
-	//---------------------------------
-	
-}
-
+	//---------------------------------Leon
+		if (vuelo) {
+			movleon_y += 1.5;
+			if (movleon_y >= 18.0f) {
+				vuelo = false;
+				avanza = true;
+			}
+		}
+		if (avanza) {
+			movleon_z -= 1.5f;
+			if (movleon_z <= 250.0f) {
+				avanza = false;
+				baja = true;
+			}
+		}
+		if (baja) {
+			movleon_y -= 1.5f;
+			if (movleon_y <= 15.0f) {
+				baja = false;
+				avanza = false;
+			}
+		}
+	}
 void getResolution()
 {
 	const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
@@ -279,7 +312,7 @@ int main()
 	Model jirafa("resources/objects/jirafa/jirafa.obj");
 	Model cuerpoAnim("resources/objects/jirafa/cuerpoAnim.obj");//Cuerpo de la jirafa animada
 	Model cuelloAnim("resources/objects/jirafa/cuelloAnim.obj");//Cuello de la jirafa animada
-	
+	Model leon("resources/objects/leon/leone.obj");
 	
 	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
 	cocinera.initShaders(animShader.ID);
@@ -533,6 +566,13 @@ int main()
 		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
 		roca.Draw(staticShader);
+		//leon
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(15.0f + movleon_x, -1.0 + movleon_y, movleon_z));
+		//model = glm::translate(model, glm::vec3(-250.0f, 15.0f, 320.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		leon.Draw(staticShader);
 		//Roca dos para leon
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-250.0f, 4.0f, 250.0f));
@@ -824,7 +864,16 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		lightPosition.x--;
 
-	
+	//leon animation
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS) {
+		vuelo = true;
+		animacion ^= true; //originalmente es un xor || animacion = !animacion;
+	}
+	if (key == GLFW_KEY_R && action == GLFW_PRESS) {
+		movleon_z = 320.0f;
+		movleon_y = 15.0f;
+	}
+
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
