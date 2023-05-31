@@ -369,7 +369,7 @@ int main()
 	Model cuerpoAnim("resources/objects/jirafa/cuerpoAnim.obj");//Cuerpo de la jirafa animada
 	Model cuelloAnim("resources/objects/jirafa/cuelloAnim.obj");//Cuello de la jirafa animada
 	Model leon("resources/objects/leon/leone.obj");
-	Model armon("resources/objects/armon/Gledista_Triacanthos.obj");
+	Model armon("resources/objects/armon/Tree.obj");
 	Model Mono("resources/objects/mono/mono.obj");
 	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
 	cocinera.initShaders(animShader.ID);
@@ -570,8 +570,8 @@ int main()
 		Mono.Draw(staticShader);
 		//armon
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-260.0f, 2.0f, -290.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::translate(model, glm::vec3(-260.0f, 2.0f, -292.0f));
+		model = glm::scale(model, glm::vec3(30.0f));
 		staticShader.setMat4("model", model);
 		armon.Draw(staticShader);
 		//arbol
