@@ -954,8 +954,8 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		animacione ^= true; //originalmente es un xor || animacion = !animacion;
 	}
 	if (key == GLFW_KEY_Q && action == GLFW_PRESS) {
-		movrino_z = -288.4f;
-		movrino_y = 3.0f;
+		movmono_z = -288.4f;
+		movmono_y = 3.0f;
 	}
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
