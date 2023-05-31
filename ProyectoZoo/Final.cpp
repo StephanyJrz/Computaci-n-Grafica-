@@ -437,7 +437,7 @@ int main()
 		animShader.setMat4("model", model);
 		cocinera.Draw(animShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(37.0f, 0.5f, -360.0f)); // translate it down so it's at the center of the scene
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(37.0f, 2.0f, -360.0f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.17f));	// it's a bit too big for our scene, so scale it down
 		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
@@ -460,51 +460,58 @@ int main()
 		//Colocación de hábitats---------------------------------------------------
 		//Hábitat más lejano-------------------------------------------------------
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-260.0f, -2.0f, -280.0f));
+		model = glm::translate(model, glm::vec3(-260.0f, -2.0f, -300.0f));
 		model = glm::scale(model, glm::vec3(1.2f, 0.7f, 1.2f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
 		//Rhino
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-240.0f, 2.0f, -270.0f));
+		model = glm::translate(model, glm::vec3(-240.0f, 2.0f, -290.0f));
 		model = glm::scale(model, glm::vec3(40.0f));
 		staticShader.setMat4("model", model);
 		rhino.Draw(staticShader);
 		//arbol
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-270.0f, 5.0f, -300.0f));
+		model = glm::translate(model, glm::vec3(-270.0f, 5.0f, -320.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
+		// habitat
+		// 
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-260.0f, -2.0f, -100.0f));
+		model = glm::scale(model, glm::vec3(1.2f, 0.7f, 1.2f));
+		staticShader.setMat4("model", model);
+		paredHabitat.Draw(staticShader);
 		//--------------------------------------------------------------------------
 		//Hábitat medio-------------------------------------------------------------
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-260.0f, -2.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-260.0f, -2.0f, 80.0f));
 		model = glm::scale(model, glm::vec3(1.2f, 0.7f, 1.2f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
 		//jirafa estatica
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-260.0f, 4.0f, 20.0f));
+		model = glm::translate(model, glm::vec3(-260.0f, 4.0f, 100.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		jirafa.Draw(staticShader);
 		//jirafa animada cuerpo
 		model = glm::mat4(1.0f);
-		tempJirafa = model = glm::translate(model, glm::vec3(-260.0f, 4.0f, 0.0f));
+		tempJirafa = model = glm::translate(model, glm::vec3(-260.0f, 4.0f, 80.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		cuerpoAnim.Draw(staticShader);
 		//jirafa animada cuello
 		model = glm::translate(tempJirafa, glm::vec3(5.5f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(mueveCuello),glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(mueveCuello),glm::vec3(0.0f, 0.0f, 90.0f));
 		model = glm::translate(model, glm::vec3(-2.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		cuelloAnim.Draw(staticShader);
 		//arbol
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-275.0f, 4.0f,-20.0f));
+		model = glm::translate(model, glm::vec3(-275.0f, 4.0f,60.0f));
 		model = glm::scale(model, glm::vec3(60.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
@@ -568,99 +575,99 @@ int main()
 		//Paredes entrada----------------------------------------------------------- 
 		//Más lejana uno
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(108.0f, -3.0f, -337.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 1.5f)); //ancho, alto, largo
+		model = glm::translate(model, glm::vec3(108.0f, -2.0f, -337.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.5f, 1.5f)); //ancho, alto, largo
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Lejana dos
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(108.0f, -3.0f, -187.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 1.5f)); //ancho, alto, largo
+		model = glm::translate(model, glm::vec3(108.0f, -2.0f, -187.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.5f, 1.5f)); //ancho, alto, largo
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Publicidad entrada
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(135.0f, -1.0f, -290.0f));
+		model = glm::translate(model, glm::vec3(135.0f, 1.0f, -290.0f));
 		model = glm::scale(model, glm::vec3(1.5f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		publiEntrada.Draw(staticShader);
 		//Más cercana uno
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(108.0f, -3.0f, 120.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 2.2f));
+		model = glm::translate(model, glm::vec3(108.0f, -2.0f, 120.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.5f, 2.2f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Más cercana dos
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(108.0f, -3.0f, 330.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 2.0f));
+		model = glm::translate(model, glm::vec3(108.0f, -2.0f, 330.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.5f, 2.0f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Publicidad estacionamiento Uno
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(135.0f, -1.0f, 120.0f));
+		model = glm::translate(model, glm::vec3(135.0f, 1.0f, 120.0f));
 		model = glm::scale(model, glm::vec3(1.5f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		publiParking.Draw(staticShader);
 		//Publicidad estacionamiento Dos
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(135.0f, -3.0f, 320.0f));
+		model = glm::translate(model, glm::vec3(135.0f, 1.0f, 320.0f));
 		model = glm::scale(model, glm::vec3(1.5f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		publiEntrada.Draw(staticShader);
 		//Más cercanas. uno
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-12.0f, -3.0f, 425.0f));
-		model = glm::scale(model, glm::vec3(2.66f, 1.0f, 0.5f)); //Largo, alto, ancho
+		model = glm::translate(model, glm::vec3(-12.0f, -2.0f, 425.0f));
+		model = glm::scale(model, glm::vec3(2.66f, 1.5f, 0.5f)); //Largo, alto, ancho
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Dos
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-281.0f, -3.0f, 425.0f));
-		model = glm::scale(model, glm::vec3(2.71f, 1.0f, 0.5f)); //Largo, alto, ancho
+		model = glm::translate(model, glm::vec3(-281.0f, -2.0f, 425.0f));
+		model = glm::scale(model, glm::vec3(2.71f, 1.5f, 0.5f)); //Largo, alto, ancho
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Más lejana uno
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-11.0f, -3.0f, -415.0f));
-		model = glm::scale(model, glm::vec3(2.7f, 1.0f, 0.5f));
+		model = glm::translate(model, glm::vec3(-11.0f, -2.0f, -415.0f));
+		model = glm::scale(model, glm::vec3(2.7f, 1.5f, 0.5f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Dos
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-281.0f, -3.0f, -417.0f));
-		model = glm::scale(model, glm::vec3(2.693f, 1.0f, 0.5f)); //Largo, alto, ancho
+		model = glm::translate(model, glm::vec3(-281.0f, -2.0f, -417.0f));
+		model = glm::scale(model, glm::vec3(2.693f, 1.5f, 0.5f)); //Largo, alto, ancho
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Paredes lado derecho, uno
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-431.0f, -3.0f, 285.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 2.95f)); //ancho, alto, largo
+		model = glm::translate(model, glm::vec3(-431.0f, -2.0f, 285.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.5f, 2.95f)); //ancho, alto, largo
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Dos
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-431.0f, -3.0f, 13.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 2.45f)); //ancho, alto, largo
+		model = glm::translate(model, glm::vec3(-431.0f, -2.0f, 13.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.5f, 2.45f)); //ancho, alto, largo
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
 		//Tres
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-431.0f, -3.0f, -258.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 3.02f)); //ancho, alto, largo
+		model = glm::translate(model, glm::vec3(-431.0f, -2.0f, -258.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.5f, 3.02f)); //ancho, alto, largo
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		paredEntrada.Draw(staticShader);
@@ -740,7 +747,7 @@ int main()
 
 		//mostrador 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(37.0f, 0.0f, -330.0f));
+		model = glm::translate(model, glm::vec3(15.0f, 2.0f, -315.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
@@ -748,8 +755,8 @@ int main()
 
 		//sombrilla
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-30.0f, -2.0f, -312.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::translate(model, glm::vec3(-30.0f, -2.0f, -322.0f));
+		model = glm::scale(model, glm::vec3(1.2f));
 		staticShader.setMat4("model", model);
 		umbrella.Draw(staticShader);
 
