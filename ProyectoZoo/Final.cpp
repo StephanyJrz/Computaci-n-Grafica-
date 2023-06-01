@@ -192,7 +192,7 @@ void animate(void)
 
 	if (cuelloHaciaArriba) {
 		mueveCuello -= 0.3f;
-		if (mueveCuello <= 15.0f) {
+		if (mueveCuello <= 20.0f) {
 			cuelloHaciaAbajo = true;
 			cuelloHaciaArriba = false;
 		}
@@ -374,45 +374,35 @@ int main()
 	KeyFrame[0].movimientoZ = 0.0f;
 	KeyFrame[0].orientacion = 0.0f;
 
-	KeyFrame[1].movimientoX = -100.0f;
+	KeyFrame[1].movimientoX = -400.0f;
 	KeyFrame[1].movimientoZ = 0.0f;
 	KeyFrame[1].orientacion = 0.0f;
 
-	KeyFrame[2].movimientoX = -100.0f;
-	KeyFrame[2].movimientoZ = 200.0f;
-	KeyFrame[2].orientacion = 90.0f;
+	KeyFrame[2].movimientoX = -400.0f;
+	KeyFrame[2].movimientoZ = -500.0f;
+	KeyFrame[2].orientacion = -90.0f;
 
-	KeyFrame[3].movimientoX = -270.0f;
-	KeyFrame[3].movimientoZ = 200.0f;
-	KeyFrame[3].orientacion = 0.0f;
+	KeyFrame[3].movimientoX = -90.0f;
+	KeyFrame[3].movimientoZ = -500.0f;
+	KeyFrame[3].orientacion = 180.0f;
 
-	KeyFrame[4].movimientoX = -270.0f;
-	KeyFrame[4].movimientoZ = 50.0f;
-	KeyFrame[4].orientacion = -90.0f;
+	KeyFrame[4].movimientoX = -90.0f;
+	KeyFrame[4].movimientoZ = 270.0f;
+	KeyFrame[4].orientacion = 90.0f;
 
-	KeyFrame[5].movimientoX = -100.0f;
-	KeyFrame[5].movimientoZ = 50.0f;
-	KeyFrame[5].orientacion = -180.0f;
+	KeyFrame[5].movimientoX = -400.0f;
+	KeyFrame[5].movimientoZ = 270.0f;
+	KeyFrame[5].orientacion = 0.0f;
 
-	KeyFrame[6].movimientoX = -100.0f;
-	KeyFrame[6].movimientoZ = -150.0f;
+	KeyFrame[6].movimientoX = -400.0f;
+	KeyFrame[6].movimientoZ = 0.0f;
 	KeyFrame[6].orientacion = -90.0f;
 
-	KeyFrame[7].movimientoX = -270.0f;
-	KeyFrame[7].movimientoZ = -150.0f;
+	KeyFrame[7].movimientoX = -100.0f;
+	KeyFrame[7].movimientoZ = 0.0f;
 	KeyFrame[7].orientacion = 0.0f;
 
-	KeyFrame[8].movimientoX = -270.0f;
-	KeyFrame[8].movimientoZ = -335.0f;
-	KeyFrame[8].orientacion = -90.0f;
-
-	KeyFrame[9].movimientoX = -100.0f;
-	KeyFrame[9].movimientoZ = -350.0f;
-	KeyFrame[9].orientacion = -180.0f;
-
-	KeyFrame[10].movimientoX = -100.0f;
-	KeyFrame[10].movimientoZ = 0.0f;
-	KeyFrame[10].orientacion = 90.0f;
+	
 
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -550,6 +540,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.2f, 0.7f, 1.2f));
 		staticShader.setMat4("model", model);
 		jaula.Draw(staticShader);
+
 		//Rhino
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(movrino_x, -1.0 , -235.0f));
@@ -595,9 +586,9 @@ int main()
 		staticShader.setMat4("model", model);
 		cuerpoAnim.Draw(staticShader);
 		//jirafa animada cuello
-		model = glm::translate(tempJirafa, glm::vec3(5.0f, 0.0f, 0.0f));
+		model = glm::translate(tempJirafa, glm::vec3(130.0f, 65.0f, 142.0f));
 		model = glm::rotate(model, glm::radians(mueveCuello),glm::vec3(0.0f, 0.0f, 1.0f));
-		model = glm::translate(model, glm::vec3(-2.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(15.0f, -10.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		cuelloAnim.Draw(staticShader);
