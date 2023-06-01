@@ -337,7 +337,6 @@ int main()
 	// -----------
 	Model pisoZoo("resources/objects/piso/pisoZoo.obj");
 	Model paredHabitat("resources/objects/paredes/paredesHabitat.obj");
-	Model paredEntrada("resources/objects/paredes/paredEntrada.obj");
 	Model banio("resources/objects/paredes/banio.obj");
 	Model toilet("resources/objects/paredes/toilet.obj");
 	Model lavabo("resources/objects/paredes/lavaboBanio.obj");
@@ -360,6 +359,7 @@ int main()
 	Model leon("resources/objects/leon/leone.obj");
 	Model armon("resources/objects/armon/Tree.obj");
 	Model Mono("resources/objects/mono/mono.obj");
+	Model jaula("resources/objects/jaula/jaula.obj");
 	/*
 	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
 	cocinera.initShaders(animShader.ID);
@@ -543,6 +543,13 @@ int main()
 		model = glm::scale(model, glm::vec3(1.2f, 0.7f, 1.2f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
+
+		//jaula para aves
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-290.0f, -5.2f, -150.0f));
+		model = glm::scale(model, glm::vec3(1.2f, 0.7f, 1.2f));
+		staticShader.setMat4("model", model);
+		jaula.Draw(staticShader);
 		//Rhino
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(movrino_x, -1.0 , -235.0f));
@@ -588,7 +595,7 @@ int main()
 		staticShader.setMat4("model", model);
 		cuerpoAnim.Draw(staticShader);
 		//jirafa animada cuello
-		model = glm::translate(tempJirafa, glm::vec3(5.5f, 0.0f, 0.0f));
+		model = glm::translate(tempJirafa, glm::vec3(5.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(mueveCuello),glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::translate(model, glm::vec3(-2.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
