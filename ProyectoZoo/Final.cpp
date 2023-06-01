@@ -340,13 +340,13 @@ int main()
 	Model banio("resources/objects/paredes/banio.obj");
 	Model toilet("resources/objects/paredes/toilet.obj");
 	Model lavabo("resources/objects/paredes/lavaboBanio.obj");
-	//Model mesa("resources/objects/banca/mesa.obj");
-	//Model mostrador("resources/objects/tienda/mostrador.obj");
+	Model mesa("resources/objects/banca/mesa.obj");
+	Model mostrador("resources/objects/tienda/mostrador.obj");
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
 	Model paradaVehiculo("resources/objects/paradaVehiculo/paradaVehiculo.obj");
 	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
-	//Model umbrella("resources/objects/umbrella/umbrella.obj");
-	//Model menu("resources/objects/menu/menu.obj");
+	Model umbrella("resources/objects/umbrella/umbrella.obj");
+	Model menu("resources/objects/menu/menu.obj");
 	Model jeep("resources/objects/safariJeep/safariJeep.obj");
 	Model publiEntrada("resources/objects/publicidad/publiEntrada.obj");
 	Model publiParking("resources/objects/publicidad/publiParking.obj");
@@ -540,7 +540,12 @@ int main()
 		model = glm::scale(model, glm::vec3(1.2f, 0.7f, 1.2f));
 		staticShader.setMat4("model", model);
 		jaula.Draw(staticShader);
-
+		//armon
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-250.0f, 0.0f, -140.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		armon.Draw(staticShader);
 		//Rhino
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(movrino_x, -1.0 , -235.0f));
