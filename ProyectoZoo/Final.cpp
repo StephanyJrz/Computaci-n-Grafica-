@@ -66,49 +66,35 @@ glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 float	mueveCuello = 0.0f;
 bool	cuelloHaciaAbajo = true,
 		cuelloHaciaArriba = false;
+
 //leon animacion
 float	movleon_x = -260.0f,
-movleon_z = 320.0f,
-movleon_y = 15.0f,
-ori = 0.0f;
+		movleon_z = 320.0f,
+		movleon_y = 15.0f,
+		ori = 0.0f;
+
 bool	animacion = false,
-recorrido1 = true,
-recorrido2 = false,
-recorrido3 = false,
-recorrido4 = false;
+		recorrido1 = true,
+		recorrido2 = false,
+		recorrido3 = false,
+		recorrido4 = false;
 
 float myVariable = 0.0f;
 bool vuelo = false;
 bool avanza = false;
 bool baja = false;
-//rino
-float	movrino_x = -290.0f,
-movrino_z = -235.0f,
-movrino_y = 4.0f,
-orige = 0.0f;
-bool	animacione = false,
-reco1 = true,
-reco2 = false,
-reco3 = false,
-reco4 = false;
 
-float rotrino = 0.0f;
-bool avanza1 = false;
-bool avanza2 = false;
-//mono
-float	movmono_x = -272.5f,
-movmono_z = -288.4f,
-movmono_y = 3.0f,
-orig = 0.0f;
-bool	animacionmo = false,
-rec1 = true,
-rec = false,
-rec3 = false,
-rec4 = false;
+//Variables animacion rino
+float	movrino_x = -280.0f,
+		rotaRino = 0.0f;
+bool	recoRinoUno = true,
+		recoRinoDos = false;
 
-float myvaria = 0.0f;
-bool avanz1 = false;
-bool avanz2 = false;
+//Variables animacion mono
+float	movmono_y = 2.0f; 
+
+bool subeMono = true,
+	 bajaMono = false;
 
 //Keyframes (Manipulación y dibujo)
 float	movimientoX = 0.0f,
@@ -212,54 +198,57 @@ void animate(void)
 		}
 	}
 	//---------------------------------Leon
-		if (vuelo) {
-			movleon_y += 1.5;
-			if (movleon_y >= 18.0f) {
+	if (vuelo) {
+		movleon_y += 1.5;
+		if (movleon_y >= 18.0f) {
 				vuelo = false;
 				avanza = true;
-			}
 		}
-		if (avanza) {
-			movleon_z -= 1.5f;
-			if (movleon_z <= 250.0f) {
-				avanza = false;
-				baja = true;
-			}
+	}
+	if (avanza) {
+		movleon_z -= 1.5f;
+		if (movleon_z <= 250.0f) {
+			avanza = false;
+			baja = true;
 		}
-		if (baja) {
-			movleon_y -= 1.5f;
-			if (movleon_y <= 15.0f) {
-				baja = false;
-				avanza = false;
-			}
+	}
+	if (baja) {
+		movleon_y -= 1.5f;
+		if (movleon_y <= 15.0f) {
+			baja = false;
+			avanza = false;
 		}
-	//rhino
-	if (avanza1) {
-		movrino_x += 1.5;
-		if (movrino_x >= -230.0f) {
-			avanza1 = false;
-			avanza2 = true;
-		}
+	}
 
+	//Animacion rino
+	if (recoRinoUno) {
+		movrino_x += 1.0f;
+		if (movrino_x >= -230.0f) {
+			recoRinoUno = false;
+			recoRinoDos = true;
+		}
 	}
-	if (avanza2) {
-		movrino_x -= 1.5f;
+	if (recoRinoDos) {
+		movrino_x -= 1.0f;
 		if (movrino_x <= -290.0f) {
-		avanza2 = false;
+			recoRinoUno = true;
+			recoRinoDos = false;
 		}
 	}
-	//mono
-	if (avanz1) {
-		movmono_y += 0.7f;
+
+	//Animacion mono
+	if (subeMono) {
+		movmono_y += 0.25f;
 		if (movmono_y >= 25.0f) {
-			avanz1 = false;
-			avanz2 = true;
+			subeMono = false;
+			bajaMono = true;
 		}
 	}
-	if (avanz2) {
-		movmono_y -= 0.7f;
-		if (movmono_y <= 3.0f) {
-			avanz2 = false;
+	if (bajaMono) {
+		movmono_y -= 0.25f;
+		if (movmono_y <= 2.0f) {
+			subeMono = true;
+			bajaMono = false;
 		}
 	}
 }
@@ -352,13 +341,13 @@ int main()
 	Model banio("resources/objects/paredes/banio.obj");
 	Model toilet("resources/objects/paredes/toilet.obj");
 	Model lavabo("resources/objects/paredes/lavaboBanio.obj");
-	Model mesa("resources/objects/banca/mesa.obj");
-	Model mostrador("resources/objects/tienda/mostrador.obj");
+	//Model mesa("resources/objects/banca/mesa.obj");
+	//Model mostrador("resources/objects/tienda/mostrador.obj");
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
 	Model paradaVehiculo("resources/objects/paradaVehiculo/paradaVehiculo.obj");
 	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
-	Model umbrella("resources/objects/umbrella/umbrella.obj");
-	Model menu("resources/objects/menu/menu.obj");
+	//Model umbrella("resources/objects/umbrella/umbrella.obj");
+	//Model menu("resources/objects/menu/menu.obj");
 	Model jeep("resources/objects/safariJeep/safariJeep.obj");
 	Model publiEntrada("resources/objects/publicidad/publiEntrada.obj");
 	Model publiParking("resources/objects/publicidad/publiParking.obj");
@@ -371,14 +360,14 @@ int main()
 	Model leon("resources/objects/leon/leone.obj");
 	Model armon("resources/objects/armon/Tree.obj");
 	Model Mono("resources/objects/mono/mono.obj");
+	/*
 	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
 	cocinera.initShaders(animShader.ID);
 
 	ModelAnim cajero("resources/objects/cajero/ArmStretching.dae");
 	cajero.initShaders(animShader.ID);
-	
-													
-																
+	*/
+															
 	//Inicialización de KeyFrames
 	
 	KeyFrame[0].movimientoX = 0.0f;
@@ -525,13 +514,13 @@ int main()
 		model = glm::scale(model, glm::vec3(0.15f));	// it's a bit too big for our scene, so scale it down
 		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
-		cocinera.Draw(animShader);
+		//cocinera.Draw(animShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(37.0f, 0.5f, -360.0f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.17f));	// it's a bit too big for our scene, so scale it down
 		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
-		cajero.Draw(animShader);
+		//cajero.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
@@ -556,15 +545,14 @@ int main()
 		paredHabitat.Draw(staticShader);
 		//Rhino
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(15.0f + movrino_x, -1.0 + movrino_y, movrino_z));
-		//model = glm::translate(model, glm::vec3(-240.0f, 2.0f, -270.0f));
+		model = glm::translate(model, glm::vec3(movrino_x, -1.0 , -235.0f));
 		model = glm::scale(model, glm::vec3(40.0f));
+		model = glm::rotate(model, glm::radians(rotaRino), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		rhino.Draw(staticShader);
 		//Mono
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(15.0f + movmono_x, -1.0 + movmono_y, movmono_z));
-		//model = glm::translate(model, glm::vec3(-260.0f,2.0f, -290.0f));
+		model = glm::translate(model, glm::vec3(-257.5f, movmono_y, -288.4f));
 		model = glm::scale(model, glm::vec3(0.3f));
 		staticShader.setMat4("model", model);
 		Mono.Draw(staticShader);
@@ -821,28 +809,28 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mesa.Draw(staticShader);
+		//mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(5.0f, -1.5f, -270.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mesa.Draw(staticShader);
+		//mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -300.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mesa.Draw(staticShader);
+		//mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -340.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mesa.Draw(staticShader);
+		//mesa.Draw(staticShader);
 
 		//mostrador 
 		model = glm::mat4(1.0f);
@@ -850,14 +838,14 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		mostrador.Draw(staticShader);
+		//mostrador.Draw(staticShader);
 
 		//sombrilla
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-30.0f, -2.0f, -312.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
 		staticShader.setMat4("model", model);
-		umbrella.Draw(staticShader);
+		//umbrella.Draw(staticShader);
 
 		//menu
 		model = glm::mat4(1.0f);
@@ -865,7 +853,7 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		menu.Draw(staticShader);
+		//menu.Draw(staticShader);
 
 
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -939,24 +927,8 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		movleon_z = 320.0f;
 		movleon_y = 15.0f;
 	}
-	//rino animation
-	if (key == GLFW_KEY_L && action == GLFW_PRESS) {
-		avanza1 = true;
-		animacione ^= true; //originalmente es un xor || animacion = !animacion;
-	}
-	if (key == GLFW_KEY_C && action == GLFW_PRESS) {
-		movrino_z = -235.0f;
-		movrino_y = 4.0f;
-	}
-	//mono animation
-	if (key == GLFW_KEY_Z && action == GLFW_PRESS) {
-		avanz1 = true;
-		animacione ^= true; //originalmente es un xor || animacion = !animacion;
-	}
-	if (key == GLFW_KEY_Q && action == GLFW_PRESS) {
-		movmono_z = -288.4f;
-		movmono_y = 3.0f;
-	}
+	
+	
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
 	{
