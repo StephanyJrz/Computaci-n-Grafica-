@@ -690,28 +690,28 @@ int main()
 		//Instalaciones---------------------------------------------------------------
 		//Banio
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-12.0f, -1.5f, 388.0f));
+		model = glm::translate(model, glm::vec3(-27.0f, -1.5f, 380.0f));
 		model = glm::scale(model, glm::vec3(1.6f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		banio.Draw(staticShader);
 		//Toilet
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-27.0f, -1.5f, 400.0f));
+		model = glm::translate(model, glm::vec3(-45.0f, -1.5f, 396.0f));
 		model = glm::scale(model, glm::vec3(2.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		toilet.Draw(staticShader);
 		//Lavabo
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-22.0f, -7.2f, 376.0f));
+		model = glm::translate(model, glm::vec3(-40.0f, -7.2f, 364.0f));
 		model = glm::scale(model, glm::vec3(18.1f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		lavabo.Draw(staticShader);
 		//Tienda de regalos
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(63.0f, -1.5f, 383.0f));
+		model = glm::translate(model, glm::vec3(55.0f, -1.5f, 376.0f));
 		model = glm::scale(model, glm::vec3(1.2f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
