@@ -95,6 +95,15 @@ float	movmono_y = 2.0f;
 
 bool subeMono = true,
 	 bajaMono = false;
+// variables de animacion del ave
+float movAlto_y = 2.0f,
+	movBajo_y,
+	  movAdeX=-300.0f;
+bool vuelaAlto = true,
+	vuelaBajo=false,
+	adelante=false,
+	atras=false;
+
 
 //Keyframes (Manipulación y dibujo)
 float	movimientoX = 0.0f,
@@ -251,6 +260,26 @@ void animate(void)
 			bajaMono = false;
 		}
 	}
+	//animacio ave
+	if (vuelaAlto) {
+		movAlto_y += 1.0;
+		movAdeX += 0.5f;
+		if (movAlto_y > 50.0f) {
+			vuelaAlto = false;
+			vuelaBajo = true;
+		}
+
+	}
+	if (vuelaBajo) {
+		movAlto_y -= 1.0;
+		movAdeX -= 0.5f;
+		if (movAlto_y < 0.0) {
+			vuelaBajo = false;
+			vuelaAlto = true;
+		}
+	}
+	
+
 }
 
 void getResolution()
@@ -360,6 +389,8 @@ int main()
 	Model armon("resources/objects/armon/Tree.obj");
 	Model Mono("resources/objects/mono/mono.obj");
 	Model jaula("resources/objects/jaula/jaula.obj");
+	Model limona("resources/objects/limona/12232_amazon_parrot_v1_L2.obj");
+	Model ave("resources/objects/limona/ave.obj");
 	/*
 	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
 	cocinera.initShaders(animShader.ID);
@@ -546,6 +577,20 @@ int main()
 		model = glm::scale(model, glm::vec3(15.0f));
 		staticShader.setMat4("model", model);
 		armon.Draw(staticShader);
+		//perico
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-250.5f, 10.0f, -137.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		limona.Draw(staticShader);
+		//ave
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(movAdeX, movAlto_y, -127.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		ave.Draw(staticShader);
 		//Rhino
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(movrino_x, -1.0 , -235.0f));
@@ -567,8 +612,8 @@ int main()
 		armon.Draw(staticShader);
 		//arbol
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-270.0f, 5.0f, -290.0f));
-		model = glm::scale(model, glm::vec3(50.0f));
+		model = glm::translate(model, glm::vec3(-270.0f, 5.0f, -230.0f));
+		model = glm::scale(model, glm::vec3(150.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
 		//--------------------------------------------------------------------------
@@ -600,7 +645,7 @@ int main()
 		//arbol
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-275.0f, 4.0f,-20.0f));
-		model = glm::scale(model, glm::vec3(60.0f));
+		model = glm::scale(model, glm::vec3(70.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
 		//------------------------------------------------------------------------
@@ -619,12 +664,12 @@ int main()
 		//arbol
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-310.0f, 4.0f, 280.0f));
-		model = glm::scale(model, glm::vec3(60.0f));
+		model = glm::scale(model, glm::vec3(160.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
 		//Roca uno para leon
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-250.0f, 4.0f, 320.0f));
+		model = glm::translate(model, glm::vec3(-250.0f, 4.0f,320.0f));
 		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
 		roca.Draw(staticShader);
