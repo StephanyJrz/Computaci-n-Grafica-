@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
-# File Created: 01.06.2023 18:40:53
+# File Created: 01.06.2023 18:43:05
 
 newmtl Muscle_Car_Pack_W2_001_Circle_006_mso
 	Ns 10.0000
@@ -12,8 +12,8 @@ newmtl Muscle_Car_Pack_W2_001_Circle_006_mso
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka maps\texturaCamuflaje.jpg
-	map_Kd maps\texturaCamuflaje.jpg
+	map_Ka texturaCamuflaje.jpg
+	map_Kd texturaCamuflaje.jpg
 
 newmtl Muscle_Car_Pack_W3_002_Circle_011_mso
 	Ns 10.0000
@@ -26,8 +26,8 @@ newmtl Muscle_Car_Pack_W3_002_Circle_011_mso
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka maps\texturaAsfalto.jpg
-	map_Kd maps\texturaAsfalto.jpg
+	map_Ka texturaAsfalto.jpg
+	map_Kd texturaAsfalto.jpg
 
 newmtl Muscle_Car_Pack_W1_001_Circle_007_mso
 	Ns 10.0000
@@ -40,8 +40,8 @@ newmtl Muscle_Car_Pack_W1_001_Circle_007_mso
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka maps\istockphoto-679468742-612x612.jpg
-	map_Kd maps\istockphoto-679468742-612x612.jpg
+	map_Ka istockphoto-679468742-612x612.jpg
+	map_Kd istockphoto-679468742-612x612.jpg
 
 newmtl Muscle_Car_Pack_W3_001_Circle_005_mso
 	Ns 10.0000
@@ -54,5 +54,5 @@ newmtl Muscle_Car_Pack_W3_001_Circle_005_mso
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka maps\paredTienda.jpg
-	map_Kd maps\paredTienda.jpg
+	map_Ka paredTienda.jpg
+	map_Kd paredTienda.jpg
